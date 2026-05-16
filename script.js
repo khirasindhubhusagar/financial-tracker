@@ -88,6 +88,13 @@ document.getElementById('text');
 const amount =
 document.getElementById('amount');
 
+const chartCanvas =
+document.getElementById(
+'financeChart'
+);
+
+let financeChart;
+
 /* LOAD STORAGE */
 
 let transactions = JSON.parse(
@@ -146,9 +153,10 @@ function updateValues(){
 
 }
 
-/* DELETE TRANSACTION */
+/* REMOVE TRANSACTION */
 
-function removeTransaction(id){
+window.removeTransaction =
+function(id){
 
     transactions =
     transactions.filter(
@@ -160,7 +168,7 @@ function removeTransaction(id){
 
 }
 
-/* SHOW TRANSACTION */
+/* ADD TRANSACTION TO UI */
 
 function addTransactionDOM(transaction){
 
@@ -219,7 +227,66 @@ function addTransaction(e){
 
 }
 
-/* INIT */
+/* CHART */
+
+function renderChart(){
+
+    const incomeData =
+    transactions
+    .filter(t => t.amount > 0)
+    .reduce((acc,t)=>acc+t.amount,0);
+
+    const expenseData =
+    Math.abs(
+
+    transactions
+    .filter(t => t.amount < 0)
+    .reduce((acc,t)=>acc+t.amount,0)
+
+    );
+
+    if(financeChart){
+
+        financeChart.destroy();
+
+    }
+
+    financeChart =
+    new Chart(chartCanvas, {
+
+        type:'doughnut',
+
+        data:{
+
+            labels:[
+                'Income',
+                'Expense'
+            ],
+
+            datasets:[{
+
+                data:[
+                    incomeData,
+                    expenseData
+                ],
+
+                backgroundColor:[
+
+                    '#16a34a',
+
+                    '#dc2626'
+
+                ]
+
+            }]
+
+        }
+
+    });
+
+}
+
+/* INITIALIZE */
 
 function init(){
 
@@ -232,6 +299,8 @@ function init(){
     updateValues();
 
     saveLocalStorage();
+
+    renderChart();
 
 }
 
@@ -249,7 +318,8 @@ window.showDashboard = function(){
 
 }
 
-window.scrollToTransactions = function(){
+window.scrollToTransactions =
+function(){
 
     document.querySelector(
         '.transaction-box'
@@ -261,7 +331,8 @@ window.scrollToTransactions = function(){
 
 }
 
-window.showAnalytics = function(){
+window.showAnalytics =
+function(){
 
     const totalTransactions =
     transactions.length;
@@ -286,20 +357,25 @@ Income: ₹${totalIncome}
 
 Expense: ₹${Math.abs(totalExpense)}
 
-Savings: ₹${totalIncome - Math.abs(totalExpense)}
+Savings:
+₹${totalIncome - Math.abs(totalExpense)}
 
-More advanced analytics coming soon 🚀`
+More advanced analytics
+coming soon 🚀`
 
     );
 
 }
 
-window.showBudget = function(){
+window.showBudget =
+function(){
 
     alert(
+
 `💰 Budget Planner
 
 Budget feature coming soon 🚀`
+
     );
 
 }
