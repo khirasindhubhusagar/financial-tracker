@@ -1,0 +1,78 @@
+body{
+    font-family: Arial;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+}
+
+.container{
+    background:white;
+    width:400px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1,h2,h3{
+    text-align:center;
+}
+
+.balance-box{
+    background:#222;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+}
+
+.summary{
+    display:flex;
+    justify-content:space-between;
+    margin:20px 0;
+}
+
+.income{
+    background:#d4edda;
+    padding:10px;
+    width:45%;
+    text-align:center;
+    border-radius:10px;
+}
+
+.expense{
+    background:#f8d7da;
+    padding:10px;
+    width:45%;
+    text-align:center;
+    border-radius:10px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+input,button{
+    margin:10px 0;
+    padding:10px;
+}
+
+button{
+    background:#007bff;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+li{
+    background:#eee;
+    margin:10px 0;
+    padding:10px;
+    display:flex;
+    justify-content:space-between;
+}
