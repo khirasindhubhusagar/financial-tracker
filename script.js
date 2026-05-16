@@ -1,17 +1,23 @@
 const balance = document.getElementById('balance');
 const income = document.getElementById('income');
 const expense = document.getElementById('expense');
+const savings = document.getElementById('savings');
+
 const list = document.getElementById('list');
+
 const form = document.getElementById('transaction-form');
+
 const text = document.getElementById('text');
+
 const amount = document.getElementById('amount');
 
-let transactions =
-JSON.parse(
+/* LOAD SAVED TRANSACTIONS */
+
+let transactions = JSON.parse(
 localStorage.getItem('transactions')
 ) || [];
 
-/* SAVE DATA */
+/* SAVE LOCAL STORAGE */
 
 function saveLocalStorage(){
 
@@ -22,7 +28,7 @@ function saveLocalStorage(){
 
 }
 
-/* UPDATE VALUES */
+/* UPDATE DASHBOARD */
 
 function updateValues(){
 
@@ -47,16 +53,23 @@ function updateValues(){
     .filter(item => item < 0)
     .reduce((acc,item)=> acc + item,0);
 
-    balance.innerText = `₹${total}`;
+    const savingsTotal = total;
 
-    income.innerText = `₹${incomeTotal}`;
+    balance.innerText =
+    `₹${total}`;
+
+    income.innerText =
+    `₹${incomeTotal}`;
 
     expense.innerText =
     `₹${Math.abs(expenseTotal)}`;
 
+    savings.innerText =
+    `₹${savingsTotal}`;
+
 }
 
-/* REMOVE TRANSACTION */
+/* DELETE TRANSACTION */
 
 function removeTransaction(id){
 
@@ -70,7 +83,7 @@ function removeTransaction(id){
 
 }
 
-/* ADD TRANSACTION TO UI */
+/* SHOW TRANSACTION */
 
 function addTransactionDOM(transaction){
 
@@ -129,7 +142,7 @@ function addTransaction(e){
 
 }
 
-/* INITIALIZE */
+/* INITIALIZE APP */
 
 function init(){
 
@@ -145,24 +158,16 @@ function init(){
 
 }
 
-/* LOGOUT */
-
-function logout(){
-
-    alert('Logged Out');
-
-    window.location.href =
-    'login.html';
-
-}
-
-/* SIDEBAR FUNCTIONS */
+/* SIDEBAR */
 
 function showDashboard(){
 
     window.scrollTo({
+
         top:0,
+
         behavior:'smooth'
+
     });
 
 }
@@ -172,24 +177,76 @@ function scrollToTransactions(){
     document.querySelector(
         '.transaction-box'
     ).scrollIntoView({
+
         behavior:'smooth'
+
     });
 
 }
 
 function showAnalytics(){
 
+    const totalTransactions =
+    transactions.length;
+
+    const totalIncome =
+    transactions
+    .filter(t => t.amount > 0)
+    .reduce((acc,t)=>acc+t.amount,0);
+
+    const totalExpense =
+    transactions
+    .filter(t => t.amount < 0)
+    .reduce((acc,t)=>acc+t.amount,0);
+
     alert(
-        'Analytics feature coming soon 🚀'
+
+`📊 FinancePro Analytics
+
+Transactions: ${totalTransactions}
+
+Income: ₹${totalIncome}
+
+Expense: ₹${Math.abs(totalExpense)}
+
+Savings: ₹${totalIncome - Math.abs(totalExpense)}
+
+More advanced analytics coming soon 🚀`
+
     );
 
 }
 
-/* FORM */
+function showBudget(){
+
+    alert(
+`💰 Budget Planner
+
+Budget feature coming soon 🚀`
+    );
+
+}
+
+/* LOGOUT */
+
+function logout(){
+
+    alert(
+        'Logged Out Successfully'
+    );
+
+    window.location.href =
+    'login.html';
+
+}
+
+/* FORM SUBMIT */
 
 form.addEventListener(
     'submit',
     addTransaction
 );
+
+/* START APP */
 
 init();
