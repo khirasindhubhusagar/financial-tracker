@@ -6,14 +6,12 @@ const form = document.getElementById('transaction-form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 
-/* LOAD SAVED DATA */
-
 let transactions =
 JSON.parse(
 localStorage.getItem('transactions')
 ) || [];
 
-/* SAVE TO LOCAL STORAGE */
+/* SAVE DATA */
 
 function saveLocalStorage(){
 
@@ -24,7 +22,7 @@ function saveLocalStorage(){
 
 }
 
-/* UPDATE BALANCE */
+/* UPDATE VALUES */
 
 function updateValues(){
 
@@ -58,7 +56,7 @@ function updateValues(){
 
 }
 
-/* DELETE TRANSACTION */
+/* REMOVE TRANSACTION */
 
 function removeTransaction(id){
 
@@ -72,7 +70,7 @@ function removeTransaction(id){
 
 }
 
-/* ADD TRANSACTION TO SCREEN */
+/* ADD TRANSACTION TO UI */
 
 function addTransactionDOM(transaction){
 
@@ -105,7 +103,7 @@ function addTransactionDOM(transaction){
 
 }
 
-/* ADD NEW TRANSACTION */
+/* ADD TRANSACTION */
 
 function addTransaction(e){
 
@@ -131,7 +129,7 @@ function addTransaction(e){
 
 }
 
-/* INITIALIZE APP */
+/* INITIALIZE */
 
 function init(){
 
@@ -151,18 +149,47 @@ function init(){
 
 function logout(){
 
+    alert('Logged Out');
+
     window.location.href =
     'login.html';
 
 }
 
-/* FORM SUBMIT */
+/* SIDEBAR FUNCTIONS */
+
+function showDashboard(){
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+
+}
+
+function scrollToTransactions(){
+
+    document.querySelector(
+        '.transaction-box'
+    ).scrollIntoView({
+        behavior:'smooth'
+    });
+
+}
+
+function showAnalytics(){
+
+    alert(
+        'Analytics feature coming soon 🚀'
+    );
+
+}
+
+/* FORM */
 
 form.addEventListener(
     'submit',
     addTransaction
 );
-
-/* START APP */
 
 init();
