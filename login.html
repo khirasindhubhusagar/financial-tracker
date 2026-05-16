@@ -1,66 +1,246 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<title>Login</title>
+    <title>FinancePro Login</title>
 
-<style>
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-body{
-    font-family:Arial;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#f4f4f4;
-}
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-.box{
-    background:white;
-    padding:30px;
-    width:300px;
-    border-radius:10px;
-}
+    <style>
 
-input,button{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-}
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial;
+    }
 
-button{
-    background:#007bff;
-    color:white;
-    border:none;
-}
+    body{
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+        );
+        color:white;
+    }
 
-</style>
+    .login-container{
+
+        width:380px;
+
+        background:#111827;
+
+        padding:35px;
+
+        border-radius:25px;
+
+        box-shadow:
+        0 0 20px rgba(0,0,0,0.4);
+
+    }
+
+    .logo{
+
+        text-align:center;
+
+        margin-bottom:25px;
+
+    }
+
+    .logo i{
+
+        font-size:55px;
+
+        color:#3b82f6;
+
+        margin-bottom:15px;
+
+    }
+
+    .logo h1{
+
+        font-size:32px;
+
+    }
+
+    .logo p{
+
+        color:#94a3b8;
+
+        margin-top:5px;
+
+    }
+
+    .input-box{
+
+        margin:18px 0;
+
+    }
+
+    .input-box label{
+
+        display:block;
+
+        margin-bottom:8px;
+
+        color:#cbd5e1;
+
+    }
+
+    .input-box input{
+
+        width:100%;
+
+        padding:14px;
+
+        border:none;
+
+        border-radius:12px;
+
+        background:#1e293b;
+
+        color:white;
+
+        font-size:16px;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        padding:14px;
+
+        border:none;
+
+        border-radius:12px;
+
+        margin-top:15px;
+
+        font-size:16px;
+
+        cursor:pointer;
+
+        transition:0.3s;
+
+    }
+
+    .signup-btn{
+
+        background:#3b82f6;
+
+        color:white;
+
+    }
+
+    .signup-btn:hover{
+
+        background:#2563eb;
+
+    }
+
+    .login-btn{
+
+        background:#16a34a;
+
+        color:white;
+
+    }
+
+    .login-btn:hover{
+
+        background:#15803d;
+
+    }
+
+    .footer-text{
+
+        text-align:center;
+
+        margin-top:20px;
+
+        color:#94a3b8;
+
+        font-size:14px;
+
+    }
+
+    </style>
 
 </head>
 
 <body>
 
-<div class="box">
+<div class="login-container">
 
-<h2>Login</h2>
+    <div class="logo">
 
-<input
-type="email"
-id="email"
-placeholder="Enter Email">
+        <i class="fa-solid fa-wallet"></i>
 
-<input
-type="password"
-id="password"
-placeholder="Enter Password">
+        <h1>FinancePro</h1>
 
-<button onclick="signup()">
-Signup
-</button>
+        <p>
+            Professional Financial Tracker
+        </p>
 
-<button onclick="login()">
-Login
-</button>
+    </div>
+
+    <div class="input-box">
+
+        <label>Email</label>
+
+        <input
+        type="email"
+        id="email"
+        placeholder="Enter your email">
+
+    </div>
+
+    <div class="input-box">
+
+        <label>Password</label>
+
+        <input
+        type="password"
+        id="password"
+        placeholder="Enter your password">
+
+    </div>
+
+    <button
+    class="btn signup-btn"
+    onclick="signup()">
+
+        <i class="fa-solid fa-user-plus"></i>
+
+        Signup
+
+    </button>
+
+    <button
+    class="btn login-btn"
+    onclick="login()">
+
+        <i class="fa-solid fa-right-to-bracket"></i>
+
+        Login
+
+    </button>
+
+    <p class="footer-text">
+
+        Secure cloud login powered by Firebase 🔥
+
+    </p>
 
 </div>
 
@@ -70,25 +250,50 @@ import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
+
 getAuth,
+
 createUserWithEmailAndPassword,
-signInWithEmailAndPassword
+
+signInWithEmailAndPassword,
+
+signOut
+
 }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
+
   apiKey: "AIzaSyD3Xsu6X4BwbSliSu75lRlkphtSQUDAalc",
-  authDomain: "financial-tracker-c03f7.firebaseapp.com",
-  projectId: "financial-tracker-c03f7",
-  storageBucket: "financial-tracker-c03f7.firebasestorage.app",
-  messagingSenderId: "594200662080",
-  appId: "1:594200662080:web:fc2854c2ad8e3041f64fa5",
-  measurementId: "G-CTY6LL6T0Q"
+
+  authDomain:
+  "financial-tracker-c03f7.firebaseapp.com",
+
+  projectId:
+  "financial-tracker-c03f7",
+
+  storageBucket:
+  "financial-tracker-c03f7.firebasestorage.app",
+
+  messagingSenderId:
+  "594200662080",
+
+  appId:
+  "1:594200662080:web:fc2854c2ad8e3041f64fa5",
+
+  measurementId:
+  "G-CTY6LL6T0Q"
+
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+getAuth(app);
+
+/* SIGNUP */
 
 window.signup = function(){
 
@@ -99,14 +304,20 @@ window.signup = function(){
     document.getElementById('password').value;
 
     createUserWithEmailAndPassword(
+
     auth,
+
     email,
+
     password
+
     )
 
     .then(()=>{
 
-        alert("Signup Successful");
+        alert(
+        'Signup Successful 🚀'
+        );
 
     })
 
@@ -118,6 +329,8 @@ window.signup = function(){
 
 }
 
+/* LOGIN */
+
 window.login = function(){
 
     const email =
@@ -127,22 +340,44 @@ window.login = function(){
     document.getElementById('password').value;
 
     signInWithEmailAndPassword(
+
     auth,
+
     email,
+
     password
+
     )
 
     .then(()=>{
 
-        alert("Login Successful");
+        alert(
+        'Login Successful ✅'
+        );
 
-        window.location.href = "index.html";
+        window.location.href =
+        'index.html';
 
     })
 
     .catch((error)=>{
 
         alert(error.message);
+
+    });
+
+}
+
+/* LOGOUT */
+
+window.logoutUser = function(){
+
+    signOut(auth)
+
+    .then(()=>{
+
+        window.location.href =
+        'login.html';
 
     });
 
