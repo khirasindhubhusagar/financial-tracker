@@ -5,7 +5,11 @@
 
     <title>FinancePro</title>
 
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+    href="style.css">
 
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -20,34 +24,46 @@
 
     <div class="sidebar">
 
-        <h2>
-            <i class="fa-solid fa-wallet"></i>
-            FinancePro
-        </h2>
+        <div>
 
-        <ul>
+            <h2>
+                <i class="fa-solid fa-wallet"></i>
+                FinancePro
+            </h2>
 
-            <li onclick="showDashboard()">
-                <i class="fa-solid fa-chart-line"></i>
-                Dashboard
-            </li>
+            <ul>
 
-            <li onclick="scrollToTransactions()">
-                <i class="fa-solid fa-money-bill"></i>
-                Transactions
-            </li>
+                <li onclick="showDashboard()">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Dashboard
+                </li>
 
-            <li onclick="showAnalytics()">
-                <i class="fa-solid fa-chart-pie"></i>
-                Analytics
-            </li>
+                <li onclick="scrollToTransactions()">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    Transactions
+                </li>
 
-            <li onclick="logout()">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                Logout
-            </li>
+                <li onclick="showAnalytics()">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Analytics
+                </li>
 
-        </ul>
+                <li onclick="showBudget()">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    Budget
+                </li>
+
+            </ul>
+
+        </div>
+
+        <button class="logout-btn"
+        onclick="logout()">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+
+        </button>
 
     </div>
 
@@ -59,9 +75,21 @@
 
         <div class="topbar">
 
-            <h1>
-                Financial Dashboard
-            </h1>
+            <div>
+
+                <h1>Financial Dashboard</h1>
+
+                <p class="welcome-text">
+                    Welcome back to FinancePro 🚀
+                </p>
+
+            </div>
+
+            <div class="profile-box">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
 
         </div>
 
@@ -99,6 +127,16 @@
 
             </div>
 
+            <div class="card savings-card">
+
+                <h3>Savings</h3>
+
+                <h2 id="savings">
+                    ₹0
+                </h2>
+
+            </div>
+
         </div>
 
         <!-- ADD TRANSACTION -->
@@ -129,7 +167,7 @@
 
         </div>
 
-        <!-- TRANSACTION HISTORY -->
+        <!-- HISTORY -->
 
         <div class="history-box">
 
