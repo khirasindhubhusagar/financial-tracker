@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Login</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#f4f4f4;
+}
+
+.box{
+    background:white;
+    padding:30px;
+    width:300px;
+    border-radius:10px;
+}
+
+input,button{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    background:#007bff;
+    color:white;
+    border:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Login</h2>
+
+<input
+type="email"
+id="email"
+placeholder="Enter Email">
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<button onclick="signup()">
+Signup
+</button>
+
+<button onclick="login()">
+Login
+</button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD3Xsu6X4BwbSliSu75lRlkphtSQUDAalc",
+  authDomain: "financial-tracker-c03f7.firebaseapp.com",
+  projectId: "financial-tracker-c03f7",
+  storageBucket: "financial-tracker-c03f7.firebasestorage.app",
+  messagingSenderId: "594200662080",
+  appId: "1:594200662080:web:fc2854c2ad8e3041f64fa5",
+  measurementId: "G-CTY6LL6T0Q"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+window.signup = function(){
+
+    const email =
+    document.getElementById('email').value;
+
+    const password =
+    document.getElementById('password').value;
+
+    createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+    )
+
+    .then(()=>{
+
+        alert("Signup Successful");
+
+    })
+
+    .catch((error)=>{
+
+        alert(error.message);
+
+    });
+
+}
+
+window.login = function(){
+
+    const email =
+    document.getElementById('email').value;
+
+    const password =
+    document.getElementById('password').value;
+
+    signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+    )
+
+    .then(()=>{
+
+        alert("Login Successful");
+
+        window.location.href = "index.html";
+
+    })
+
+    .catch((error)=>{
+
+        alert(error.message);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
