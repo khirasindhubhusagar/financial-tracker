@@ -1,23 +1,100 @@
-const balance = document.getElementById('balance');
-const income = document.getElementById('income');
-const expense = document.getElementById('expense');
-const savings = document.getElementById('savings');
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-const list = document.getElementById('list');
+import {
 
-const form = document.getElementById('transaction-form');
+getAuth,
 
-const text = document.getElementById('text');
+onAuthStateChanged,
 
-const amount = document.getElementById('amount');
+signOut
 
-/* LOAD SAVED TRANSACTIONS */
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyD3Xsu6X4BwbSliSu75lRlkphtSQUDAalc",
+
+  authDomain:
+  "financial-tracker-c03f7.firebaseapp.com",
+
+  projectId:
+  "financial-tracker-c03f7",
+
+  storageBucket:
+  "financial-tracker-c03f7.firebasestorage.app",
+
+  messagingSenderId:
+  "594200662080",
+
+  appId:
+  "1:594200662080:web:fc2854c2ad8e3041f64fa5",
+
+  measurementId:
+  "G-CTY6LL6T0Q"
+
+};
+
+/* INITIALIZE FIREBASE */
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+/* AUTH PROTECTION */
+
+onAuthStateChanged(auth,(user)=>{
+
+    if(!user){
+
+        window.location.href =
+        'login.html';
+
+    }
+
+});
+
+/* ELEMENTS */
+
+const balance =
+document.getElementById('balance');
+
+const income =
+document.getElementById('income');
+
+const expense =
+document.getElementById('expense');
+
+const savings =
+document.getElementById('savings');
+
+const list =
+document.getElementById('list');
+
+const form =
+document.getElementById(
+'transaction-form'
+);
+
+const text =
+document.getElementById('text');
+
+const amount =
+document.getElementById('amount');
+
+/* LOAD STORAGE */
 
 let transactions = JSON.parse(
 localStorage.getItem('transactions')
 ) || [];
 
-/* SAVE LOCAL STORAGE */
+/* SAVE STORAGE */
 
 function saveLocalStorage(){
 
@@ -28,7 +105,7 @@ function saveLocalStorage(){
 
 }
 
-/* UPDATE DASHBOARD */
+/* UPDATE VALUES */
 
 function updateValues(){
 
@@ -142,7 +219,7 @@ function addTransaction(e){
 
 }
 
-/* INITIALIZE APP */
+/* INIT */
 
 function init(){
 
@@ -160,7 +237,7 @@ function init(){
 
 /* SIDEBAR */
 
-function showDashboard(){
+window.showDashboard = function(){
 
     window.scrollTo({
 
@@ -172,7 +249,7 @@ function showDashboard(){
 
 }
 
-function scrollToTransactions(){
+window.scrollToTransactions = function(){
 
     document.querySelector(
         '.transaction-box'
@@ -184,7 +261,7 @@ function scrollToTransactions(){
 
 }
 
-function showAnalytics(){
+window.showAnalytics = function(){
 
     const totalTransactions =
     transactions.length;
@@ -217,7 +294,7 @@ More advanced analytics coming soon 🚀`
 
 }
 
-function showBudget(){
+window.showBudget = function(){
 
     alert(
 `💰 Budget Planner
@@ -227,26 +304,32 @@ Budget feature coming soon 🚀`
 
 }
 
-/* LOGOUT */
+/* REAL LOGOUT */
 
-function logout(){
+window.logout = function(){
 
-    alert(
+    signOut(auth)
+
+    .then(()=>{
+
+        alert(
         'Logged Out Successfully'
-    );
+        );
 
-    window.location.href =
-    'login.html';
+        window.location.href =
+        'login.html';
+
+    });
 
 }
 
-/* FORM SUBMIT */
+/* FORM */
 
 form.addEventListener(
     'submit',
     addTransaction
 );
 
-/* START APP */
+/* START */
 
 init();
