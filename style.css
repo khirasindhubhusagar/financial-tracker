@@ -94,7 +94,7 @@ body{
     font-size:25px;
 }
 
-/* CARDS */
+/* DASHBOARD CARDS */
 
 .cards{
     display:grid;
@@ -116,19 +116,35 @@ body{
 }
 
 .balance-card{
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+    );
 }
 
 .income-card{
-    background:linear-gradient(135deg,#16a34a,#15803d);
+    background:linear-gradient(
+    135deg,
+    #16a34a,
+    #15803d
+    );
 }
 
 .expense-card{
-    background:linear-gradient(135deg,#dc2626,#b91c1c);
+    background:linear-gradient(
+    135deg,
+    #dc2626,
+    #b91c1c
+    );
 }
 
 .savings-card{
-    background:linear-gradient(135deg,#9333ea,#7e22ce);
+    background:linear-gradient(
+    135deg,
+    #9333ea,
+    #7e22ce
+    );
 }
 
 .card h3{
@@ -214,6 +230,15 @@ li{
     border-radius:5px;
     cursor:pointer;
     margin-left:10px;
+}
+
+/* CHART */
+
+canvas{
+    margin-top:20px;
+    background:white;
+    border-radius:20px;
+    padding:20px;
 }
 
 /* MOBILE */
